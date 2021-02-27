@@ -5,7 +5,8 @@ var AparelhosSchema = new Schema({
     'name': String,
     'comodo': String,
     'movel': Boolean,
-    'assinatura': Number
+    'assinatura': Number,
+    'id_user': String,
 }, {versionKey:false})
 
 module.exports = mongoose.model('Aparelhos', AparelhosSchema);

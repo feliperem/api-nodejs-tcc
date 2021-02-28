@@ -20,6 +20,7 @@ module.exports = {
     },
 
     listAparelhos: function(req, res) {
+        let id_user = req.params.id_user;
         AparelhosModel.find({id_user: id_user}, (err, apar) => {
             if(err) {
                 res.status(500).send(err);

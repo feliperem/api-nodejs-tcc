@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var AparelhosSchema = new Schema({
     'name': String,
-    'comodo': String,
+    'comodo': [{type: mongoose.Schema.Types.ObjectId, ref: 'Comodo'}],
     'movel': Boolean,
     'assinatura': Number,
     'id_user': String,

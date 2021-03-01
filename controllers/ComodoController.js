@@ -1,4 +1,5 @@
 var ComodoModel = require("../models/ComodosModel");
+var AparelhosModel = require("../models/AparelhosModel");
 
 module.exports = {
     createComodo: function(req, res){
@@ -27,15 +28,21 @@ module.exports = {
         })
     },
 
-    deleteComodo: function(req, res) {
-        let id = req.params.id;
-        ComodoModel.deleteOne({_id: id}, (err) => {
-            if(err){
-                res.status(500).send(err);
+    deleteComodo: async function(req, res) {
+        try{
+            let id = req.params.id;
+            let apars = await AparelhosModel.find({comodo: id}).exec();
+            if(apars.length > 0){
+                res.status(500).send({
+                    msg: "Você não pode remover este Cômodo"
+                })
             } else {
+                await ComodoModel.deleteOne({_id: id});
                 res.status(200).send({});
             }
-        })
+        } catch(err) {
+            res.status(500).send({msg: "Internal error", error: err})
+        }
     },
 
     editComodo: function(req, res) {

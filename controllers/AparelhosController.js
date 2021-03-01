@@ -7,6 +7,7 @@ module.exports = {
             name: req.body.name,
             comodo: req.body.comodo,
             movel: req.body.movel,
+            assinatura: req.body.assinatura,
             id_user: req.body.id_user
         });
         p.save((err, apar) => {
